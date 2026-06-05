@@ -30,7 +30,6 @@ function render(state) {
             </div>
             <input type="tel" id="phone" placeholder="e.g. +1 234 567 890" value="${state.phone}">
           </div>
-          <button type="button" class="btn-next">Next Step (TEST BUTTON)</button>
         </form>
       </div>
     </div>
@@ -96,6 +95,5 @@ function handleNextStep() {
 
 export function init() {
   document.querySelector('.main').innerHTML = render(state);
-  document.querySelector('.btn-next').addEventListener('click', handleNextStep);
 }
 
