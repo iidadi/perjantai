@@ -8,3 +8,7 @@ import { renderStep5 } from "./step5.js";
 document.addEventListener('DOMContentLoaded', () => {
   init();
 });
+
+export function formatCurrency(cents) {
+  return (cents / 100).toFixed(0);
+}

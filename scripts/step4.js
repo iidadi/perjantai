@@ -1,15 +1,16 @@
 // View of MVC
+import { formatCurrency } from "./app.js";
 
 export function renderStep4() {
   let step4HTML = '';
 
   // ! testing variables !
   let planName = 'Arcade';
-  let planCostCents = 9;
+  let planCostCents = 900;
   let billingTypeFormat1 = 'Monthly';
   let billingTypeFormat2 = 'mo';
   let billingTypeFormat3 = 'month';
-  let totalCostCents = 12;
+  let totalCostCents = 1200;
   // ! testing variables !
 
   step4HTML += `
@@ -28,7 +29,7 @@ export function renderStep4() {
           </div>
           <a href="" class="plan-change-link">Change</a>
           <div class="plan-cost">
-            $${planCostCents}/${billingTypeFormat2}
+            $${formatCurrency(planCostCents)}/${billingTypeFormat2}
           </div>
         </div>
 
@@ -40,7 +41,7 @@ export function renderStep4() {
           Total (per ${billingTypeFormat3})
         </div>
         <div class="order-total-cost">
-          +$${totalCostCents}/${billingTypeFormat2}
+          +$${formatCurrency(totalCostCents)}/${billingTypeFormat2}
         </div>
       </div>
     </div>
