@@ -14,7 +14,8 @@ const yearly = [
 
 let isYearly = false;
 
-function renderPlans(plans) {
+// Creating all HTML of Step 2
+export function renderPlans(plans) {
     let HTML = /* html */ `
         <div>2</div>
         <div>Select your plan</div>
@@ -49,6 +50,7 @@ function renderPlans(plans) {
     attachEvents();
 }
 
+// Changing Plan
 function attachEvents() {
     document.querySelector('.js-billing-toggle')
         .addEventListener('change', (event) => {
@@ -64,4 +66,12 @@ function attachEvents() {
         });
 }
 
+/*
+document.querySelector('.js-go-back')
+    .addEventListener('click', () => { Save all to data and Go to Step 1 });
+document.querySelector('.js-next-step')
+    .addEventListener('click', () => { Save all to data and Go to Step 3 });
+*/
+
+// Put this in Next Button from Step 1
 renderPlans(monthly);
