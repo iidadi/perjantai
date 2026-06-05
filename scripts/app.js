@@ -1,3 +1,7 @@
 // Controller of MVC
 
-// Imports
+import { init } from './step1.js';
+
+document.addEventListener('DOMContentLoaded', () => {
+  init();
+});
