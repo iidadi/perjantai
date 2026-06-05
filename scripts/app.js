@@ -107,4 +107,9 @@ function renderFooter(step) {
             setStep(step - 1);
         })
     }
+  init();
+});
+
+export function formatCurrency(cents) {
+  return (cents / 100).toFixed(0);
 }
