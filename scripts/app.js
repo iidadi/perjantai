@@ -3,7 +3,6 @@
 // Imports
 import { state } from './data.js';
 import { init } from './step1.js';
-import { renderPlans } from './step2.js';
 import { step3 } from './step3.js';
 import { renderStep4 } from "./step4.js";
 import { renderStep5 } from "./step5.js";
@@ -13,7 +12,7 @@ const theHeader = document.querySelector('.header')
 const theFooter = document.querySelector('.footer')
 const mainContainer = document.querySelector('.main')
 
-const stepMap = { 1: init, 2: renderPlans, 3: step3, 4: renderStep4, 5: renderStep5 };
+const stepMap = { 1: init, 2: null, 3: step3, 4: renderStep4, 5: renderStep5 };
 
 // DOMs
 document.addEventListener('DOMContentLoaded', () => {
@@ -108,7 +107,7 @@ function renderFooter(step) {
         })
     }
   init();
-});
+}
 
 export function formatCurrency(cents) {
   return (cents / 100).toFixed(0);

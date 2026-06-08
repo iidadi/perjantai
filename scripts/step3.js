@@ -27,12 +27,12 @@ export const step3 = {
     render(container, state) {
 
         /* monthly yearly handler (boolean) */
-        isMonthly = state.planSelect.isMonthly; // state handling for when switch is monthly/yearly
+        const isMonthly = state.planSelect?.isMonthly; // state handling for when switch is monthly/yearly
         const calculate = isMonthly ? 1 : 10; // Math it out month = 1$ so year is *10 = 10$
         const per = isMonthly ? "/mo" : "/yr"; // per month or per year state string choice
 
         /* data mapper for selected options assigned "add" */
-        selectedOptions = state.addon.map(add => add.id);
+        const selectedOptions = state.addon?.map(add => add.id) || [];
 
         /*function handler*/
         const options = addons.map(add => {
