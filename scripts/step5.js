@@ -1,9 +1,10 @@
 // View of MVC
 
-export function renderStep5() {
-  let step5HTML = '';
+export const step5 = {
+  renderStep5() {
+    let step5HTML = '';
 
-  step5HTML += `
+    step5HTML += `
   <div class="step5-wrapper">
     <div class="card">
       <img src="assets/images/icon-thank-you.svg">
@@ -19,6 +20,7 @@ export function renderStep5() {
   </div>
   `
 
-  document.querySelector('.main')
-    .innerHTML = step5HTML;
+    document.querySelector('.main')
+      .innerHTML = step5HTML;
+  }
 }

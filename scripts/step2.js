@@ -15,17 +15,18 @@ export const step2 = {
 
   isYearly: false,
 
-  renderPlans(plans) {
+  renderStep2(plans) {
     let HTML = /* html */ `
-        <div>2</div>
-        <div>Select your plan</div>
-        <div>You have the option of monthly or yearly billing.</div>
+    <div class="card">
+        <h1>Select your plan</h1>
+        <div class="subtitle">You have the option of monthly or yearly billing.</div>
     `;
 
     let HTML2 = /* html */ `
         Monthly
         <label class="switch"><input type="checkbox" class="js-billing-toggle" ${this.isYearly ? 'checked' : ''}></label>
         Yearly
+    </div>
     `;
 
     plans.forEach((plan, index) => {
@@ -53,10 +54,10 @@ export const step2 = {
         this.isYearly = event.target.checked;
 
         if (this.isYearly) {
-          this.renderPlans(this.yearly);
+          this.renderStep2(this.yearly);
         }
         else {
-          this.renderPlans(this.monthly);
+          this.renderStep2(this.monthly);
         }
       });
   }
