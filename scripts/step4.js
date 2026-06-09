@@ -1,19 +1,20 @@
 // View of MVC
 import { formatCurrency } from "./app.js";
 
-export function renderStep4() {
-  let step4HTML = '';
+export const step4 = {
+  renderStep4() {
+    let step4HTML = '';
 
-  // ! testing variables !
-  let planName = 'Arcade';
-  let planCostCents = 900;
-  let billingTypeFormat1 = 'Monthly';
-  let billingTypeFormat2 = 'mo';
-  let billingTypeFormat3 = 'month';
-  let totalCostCents = 1200;
-  // ! testing variables !
+    // ! testing variables !
+    let planName = 'Arcade';
+    let planCostCents = 900;
+    let billingTypeFormat1 = 'Monthly';
+    let billingTypeFormat2 = 'mo';
+    let billingTypeFormat3 = 'month';
+    let totalCostCents = 1200;
+    // ! testing variables !
 
-  step4HTML += `
+    step4HTML += `
   <div class="step4-wrapper">
     <div class="card">
       <h1>Finishing up</h1>
@@ -48,6 +49,7 @@ export function renderStep4() {
   </div>
   `;
 
-  document.querySelector('.main')
-  .innerHTML = step4HTML;
+    document.querySelector('.main')
+      .innerHTML = step4HTML;
+  }
 }

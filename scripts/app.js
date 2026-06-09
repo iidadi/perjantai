@@ -5,14 +5,14 @@ import { state } from './data.js';
 import { init } from './step1.js';
 import { step2 } from './step2.js';
 import { step3 } from './step3.js';
-import { renderStep4 } from "./step4.js";
-import { renderStep5 } from "./step5.js";
+import { step4 } from "./step4.js";
+import { step5 } from "./step5.js";
 
 const theHeader = document.querySelector('.header')
 const theFooter = document.querySelector('.footer')
 const mainContainer = document.querySelector('.main')
 
-const stepMap = { 1: init, 2: step2, 3: step3, 4: renderStep4, 5: renderStep5 };
+const stepMap = { 1: init, 2: step2, 3: step3, 4: step4, 5: step5 };
 
 // DOMs
 document.addEventListener('DOMContentLoaded', () => {
@@ -27,17 +27,22 @@ function renderPage() {
 
     const activeModule = stepMap[thisStep];
 
-    if (activeModule) { 
-        if (typeof activeModule.init === "function") {
-            activeModule.init();
-        } else if (typeof activeModule.render === "function") { 
-            activeModule.render(mainContainer, state);
-        } else if (typeof activeModule.renderPlans === "function") {
-            activeModule.renderPlans(step2.monthly);
-        } else if (typeof activeModule === "function") {
-            activeModule();
-        }
-    }
+    switch (thisStep) {
+        case 1:
+            init();
+            break;
+        case 2:
+            activeModule.renderStep2(step2.monthly);
+            break;
+        case 3:
+            activeModule.renderStep3(mainContainer, state);
+            break;
+        case 4:
+            activeModule.renderStep4();
+            break;
+        case 5:
+            activeModule.renderStep5();
+    };
 }
 
 function setStep(newStep) {

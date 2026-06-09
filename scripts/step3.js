@@ -24,7 +24,7 @@ const addons = [
 
 // Export dynamic HTML (with its functions)
 export const step3 = {
-    render(container, state) {
+    renderStep3(container, state) {
 
         /* monthly yearly handler (boolean) */
         const isMonthly = state.planSelect?.isMonthly; // state handling for when switch is monthly/yearly
@@ -54,9 +54,9 @@ export const step3 = {
 
         /* Container */
         container.innerHTML = `
-        <div class="form-container">
+        <div class="card">
             <h1>Pick add-ons</h1>
-            <p class="sub-title">Add-ons help enhance your gaming experience.</p>
+            <p class="subtitle">Add-ons help enhance your gaming experience.</p>
             <div class="addons">
                 ${options} <!-- Calling options into the form container -->
             </div>
