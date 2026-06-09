@@ -3,16 +3,16 @@
 // Imports
 import { state } from './data.js';
 import { init } from './step1.js';
+import { step2 } from './step2.js';
 import { step3 } from './step3.js';
 import { renderStep4 } from "./step4.js";
 import { renderStep5 } from "./step5.js";
-
 
 const theHeader = document.querySelector('.header')
 const theFooter = document.querySelector('.footer')
 const mainContainer = document.querySelector('.main')
 
-const stepMap = { 1: init, 2: null, 3: step3, 4: renderStep4, 5: renderStep5 };
+const stepMap = { 1: init, 2: step2, 3: step3, 4: renderStep4, 5: renderStep5 };
 
 // DOMs
 document.addEventListener('DOMContentLoaded', () => {
@@ -32,6 +32,8 @@ function renderPage() {
             activeModule.init();
         } else if (typeof activeModule.render === "function") { 
             activeModule.render(mainContainer, state);
+        } else if (typeof activeModule.renderPlans === "function") {
+            activeModule.renderPlans(step2.monthly);
         } else if (typeof activeModule === "function") {
             activeModule();
         }
