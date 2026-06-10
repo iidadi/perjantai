@@ -2,7 +2,7 @@
 
 // Imports
 import { state } from './data.js';
-import { init } from './step1.js';
+import { step1 } from './step1.js';
 import { step2 } from './step2.js';
 import { step3 } from './step3.js';
 import { step4 } from "./step4.js";
@@ -12,7 +12,7 @@ const theHeader = document.querySelector('.header')
 const theFooter = document.querySelector('.footer')
 const mainContainer = document.querySelector('.main')
 
-const stepMap = { 1: init, 2: step2, 3: step3, 4: step4, 5: step5 };
+const stepMap = { 1: step1, 2: step2, 3: step3, 4: step4, 5: step5 };
 
 // DOMs
 document.addEventListener('DOMContentLoaded', () => {
@@ -29,7 +29,7 @@ function renderPage() {
 
     switch (thisStep) {
         case 1:
-            init();
+            activeModule.init();
             break;
         case 2:
             activeModule.renderStep2(step2.monthly);
@@ -98,14 +98,14 @@ function renderFooter(step) {
 
     theFooter.querySelector("#next-btn").addEventListener('click', () => {
         const activeModule = stepMap[step];
-        if (activeModule && typeof activeModule.handleNextStep === "function") {
-            const isValid = activeModule.handleNextStep();
+        if (step === 1) {
+            const isValid = step1.handleNextStep();
             if (isValid) {
                 setStep(step + 1);
-            }
+            };
         } else {
-            setStep(step + 1)
-        }
+            setStep(step + 1);
+        };
     });
 
     if (backBtn) {
@@ -113,7 +113,7 @@ function renderFooter(step) {
             setStep(step - 1);
         })
     }
-  init();
+  step1.init();
 }
 
 export function formatCurrency(cents) {

@@ -2,8 +2,9 @@
 
 import { state, setPersonalInfo } from './data.js';
 
-function render(state) {
-  return `
+export const step1 = {
+  renderStep1(state) {
+    return `
     <div class="step1-wrapper">
       <div class="card">
         <h1>Personal info</h1>
@@ -34,66 +35,69 @@ function render(state) {
       </div>
     </div>
   `;
-}
+  },
 
-function showError(input, message) {
-  input.classList.add('input-error');
-  input.closest('.form-group').querySelector('.error-msg').textContent = message;
-}
+  showError(input, message) {
+    input.classList.add('input-error');
+    input.closest('.form-group').querySelector('.error-msg').textContent = message;
+  },
 
-function clearError(input) {
-  input.classList.remove('input-error');
-  input.closest('.form-group').querySelector('.error-msg').textContent = '';
-}
+  clearError(input) {
+    input.classList.remove('input-error');
+    input.closest('.form-group').querySelector('.error-msg').textContent = '';
+  },
 
-function validateEmail() {
-  const input = document.getElementById('email');
-  if (input.value.trim() === '') {
-    showError(input, 'This field is required');
-    return false;
+  validateEmail() {
+    const input = document.getElementById('email');
+    if (input.value.trim() === '') {
+      this.showError(input, 'This field is required');
+      return false;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value.trim())) {
+      this.showError(input, 'Invalid email address');
+      return false;
+    }
+    this.clearError(input);
+    return true;
+  },
+
+  validatePhone() {
+    const input = document.getElementById('phone');
+    if (input.value.trim() === '') {
+      this.showError(input, 'This field is required');
+      return false;
+    }
+    this.clearError(input);
+    return true;
+  },
+
+  validateName() {
+    const input = document.getElementById('name');
+    if (input.value.trim() === '') {
+      this.showError(input, 'This field is required');
+      return false;
+    }
+    this.clearError(input);
+    return true;
+  },
+
+  handleNextStep() {
+    const nameValid = this.validateName();
+    const emailValid = this.validateEmail();
+    const phoneValid = this.validatePhone();
+    if (nameValid && emailValid && phoneValid) {
+      setPersonalInfo({
+        name: document.getElementById('name').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        phone: document.getElementById('phone').value.trim(),
+      });
+      return true;
+    } else {
+      return false;
+    }
+  },
+
+  init() {
+    document.querySelector('.main').innerHTML = this.renderStep1(state);
   }
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value.trim())) {
-    showError(input, 'Invalid email address');
-    return false;
-  }
-  clearError(input);
-  return true;
 }
-
-function validatePhone() {
-  const input = document.getElementById('phone');
-  if (input.value.trim() === '') {
-    showError(input, 'This field is required');
-    return false;
-  }
-  clearError(input);
-  return true;
-}
-
-function validateName() {
-  const input = document.getElementById('name');
-  if (input.value.trim() === '') {
-    showError(input, 'This field is required');
-    return false;
-  }
-  clearError(input);
-  return true;
-}
-
-function handleNextStep() {
-  const nameValid = validateName();
-  const emailValid = validateEmail();
-  const phoneValid = validatePhone();
-  if (nameValid && emailValid && phoneValid) {
-    setPersonalInfo({
-      name: document.getElementById('name').value.trim(),
-      email: document.getElementById('email').value.trim(),
-      phone: document.getElementById('phone').value.trim(),
-    });
-  }
-}
-
-export function init() {
-  document.querySelector('.main').innerHTML = render(state);
-}
-
