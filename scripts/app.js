@@ -60,19 +60,38 @@ function renderHeader(step) {
         { id: 4, text: 'SUMMARY' }
     ];
 
-    theHeader.innerHTML = `
+    theHeader.innerHTML = /* html */ `
     <div class="steps">
-        ${theSteps.map(s => `
+        ${theSteps.map(s => /* html */ `
             <div class="step-item">
+                <!-- MOBILE DESIGN (HTML) -->
                 <div class="step-num ${s.id === isStep ? 'active' : ''}">${s.id}</div>
-                <div class="step-text">
-                    <span>Step ${s.id}</span>
-                    <b>${s.text}</b>
-                </div>
             </div>
         `).join("")}
     </div>
     `;
+}
+
+// Aside
+export function renderAside(step) {
+    const isStep = step === 5 ? 4 : step;
+    const theSteps = [
+        { id: 1, text: 'YOUR INFO' },
+        { id: 2, text: 'SELECT PLAN' },
+        { id: 3, text: 'ADD-ONS' },
+        { id: 4, text: 'SUMMARY' }
+    ];
+    
+        return theSteps.map(s => /* html */ `
+                <!-- DESKTOP DESIGN (HTML) -->
+                <div class="steps-desktop">
+                    <div class="step-num ${s.id === isStep ? 'active' : ''}">${s.id}</div>
+                    <div class="step-text" ${s.id === isStep ? 'active' : ''}>
+                        <div class="step-text-2"><span>STEP ${s.id}</span></div>
+                        <div><b>${s.text}</b></div>
+                    </div>
+                </div>
+        `).join('');
 }
 
 // Footer
