@@ -32,7 +32,7 @@ function renderPage() {
             activeModule.init();
             break;
         case 2:
-            activeModule.renderStep2(step2.monthly);
+            activeModule.renderStep2();
             break;
         case 3:
             activeModule.renderStep3(mainContainer, state);

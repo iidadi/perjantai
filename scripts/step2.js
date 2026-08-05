@@ -18,7 +18,7 @@ export const step2 = {
 
   isYearly: false,
 
-  renderStep2(plans) {
+  renderStep2() {
     let HTML = /* html */ `
       <div class="card">
         <div class="aside">
@@ -40,6 +40,8 @@ export const step2 = {
         </div>
       </div>
     `;
+    
+    const plans = this.isYearly ? this.yearly : this.monthly
 
     plans.forEach((plan, index) => {
       HTML += /* html */ `
