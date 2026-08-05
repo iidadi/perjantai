@@ -1,18 +1,19 @@
 // View of MVC
 
 import { renderAside } from './app.js';
+import { setPlanInfo } from './data.js'
 
 export const step2 = {
   monthly: [
-    { name: "Arcade", priceCents: 900, bonus: "", pic: "../assets/images/icon-arcade.svg" },
-    { name: "Advanced", priceCents: 1200, bonus: "", pic: "../assets/images/icon-advanced.svg" },
-    { name: "Pro", priceCents: 1500, bonus: "", pic: "../assets/images/icon-pro.svg" }
+    { name: "Arcade", priceCents: 900, bonus: "", pic: "./assets/images/icon-arcade.svg" },
+    { name: "Advanced", priceCents: 1200, bonus: "", pic: "./assets/images/icon-advanced.svg" },
+    { name: "Pro", priceCents: 1500, bonus: "", pic: "./assets/images/icon-pro.svg" }
   ],
 
   yearly: [
-    { name: "Arcade", priceCents: 9000, bonus: "2 months free", pic: "../assets/images/icon-arcade.svg" },
-    { name: "Advanced", priceCents: 12000, bonus: "2 months free", pic: "../assets/images/icon-advanced.svg" },
-    { name: "Pro", priceCents: 15000, bonus: "2 months free", pic: "../assets/images/icon-pro.svg" }
+    { name: "Arcade", priceCents: 9000, bonus: "2 months free", pic: "./assets/images/icon-arcade.svg" },
+    { name: "Advanced", priceCents: 12000, bonus: "2 months free", pic: "./assets/images/icon-advanced.svg" },
+    { name: "Pro", priceCents: 15000, bonus: "2 months free", pic: "./assets/images/icon-pro.svg" }
   ],
 
   isYearly: false,
@@ -43,7 +44,7 @@ export const step2 = {
     plans.forEach((plan, index) => {
       HTML += /* html */ `
             <div class="plan"><label>
-              <input type="radio" name="option" ${index === 0 ? 'checked' : ''}>
+              <input type="radio" name="option" value="${plan.name} ${plan.priceCents} ${this.isYearly ? 'Yearly yr year' : 'Monthly mo month'}" ${index === 0 ? 'checked' : ''}>
               <div class="plan-pic"><img class="plan-img" src="${plan.pic}"></div>
               <div class="plan-text">
                 <div class="plan-text-name">${plan.name}</div>
@@ -74,5 +75,12 @@ export const step2 = {
           this.renderStep2(this.monthly);
         }
       });
+  },
+
+  saveSelectedPlan() {
+    const selectedPlan = document.querySelector('input[name="option"]:checked').value;
+    const selectedPlanArray = selectedPlan.split(" ")
+
+    setPlanInfo(selectedPlanArray);
   }
 }
