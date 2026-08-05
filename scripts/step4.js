@@ -1,19 +1,20 @@
 // View of MVC
 import { formatCurrency } from "./app.js";
+import { getPlanInfo } from "./data.js";
 
 export const step4 = {
   renderStep4() {
     let step4HTML = '';
+    
+    const plan = getPlanInfo();
 
-    // ! testing variables !
-    let planName = 'Arcade';
-    let planCostCents = 900;
-    let billingTypeFormat1 = 'Monthly';
-    let billingTypeFormat2 = 'mo';
-    let billingTypeFormat3 = 'month';
-    let totalCostCents = 1200;
-    // ! testing variables !
-
+    const planName = plan.name;
+    const planCostCents = plan.price;
+    const billingTypeFormat1 = plan.typeformat1;
+    const billingTypeFormat2 = plan.typeformat2;
+    const billingTypeFormat3 = plan.typeformat3;
+    const totalCostCents = 1200;
+    
     step4HTML += `
   <div class="step4-wrapper">
     <div class="card">

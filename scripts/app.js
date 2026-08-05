@@ -103,6 +103,9 @@ function renderFooter(step) {
             if (isValid) {
                 setStep(step + 1);
             };
+        } else if (step === 2) {
+            step2.saveSelectedPlan();
+            setStep(step + 1);
         } else {
             setStep(step + 1);
         };

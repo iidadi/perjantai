@@ -9,3 +9,18 @@ export function setPersonalInfo({ name, email, phone }) {
   localStorage.setItem('formData', JSON.stringify(state));
 }
 
+export function setPlanInfo(planArray) {
+  const plan = {
+    name: planArray[0],
+    price: planArray[1],
+    typeformat1: planArray[2],
+    typeformat2: planArray[3],
+    typeformat3: planArray[4]
+  }
+  
+  localStorage.setItem('currentPlan', JSON.stringify(plan));
+}
+
+export function getPlanInfo() {
+  return JSON.parse(localStorage.getItem('currentPlan'));
+}
