@@ -24,3 +24,11 @@ export function setPlanInfo(planArray) {
 export function getPlanInfo() {
   return JSON.parse(localStorage.getItem('currentPlan'));
 }
+
+export function setAddonsInfo(selectedAddonsArray) {
+  localStorage.setItem('currentAddons', JSON.stringify(selectedAddonsArray));
+}
+
+export function getAddonsInfo() {
+  return JSON.parse(localStorage.getItem('currentAddons')) || [];
+}
