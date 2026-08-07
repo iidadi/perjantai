@@ -35,7 +35,7 @@ function renderPage() {
             activeModule.renderStep2();
             break;
         case 3:
-            activeModule.renderStep3(mainContainer, state);
+            activeModule.renderStep3(mainContainer);
             break;
         case 4:
             activeModule.renderStep4();
@@ -124,6 +124,9 @@ function renderFooter(step) {
             };
         } else if (step === 2) {
             step2.saveSelectedPlan();
+            setStep(step + 1);
+        } else if (step === 3) {
+            step3.addonsSelected();
             setStep(step + 1);
         } else {
             setStep(step + 1);

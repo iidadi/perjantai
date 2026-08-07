@@ -59,7 +59,7 @@ export const step3 = {
                             <h3>${add.name}</h3>
                             <p>${add.description}</p>
                         </div>
-                    <div class="addon-price">+$${totalPrice}${per}</div>
+                    <div class="addon-price">+$${totalPrice / 100}${per}</div>
                 </div>
         `;
       })

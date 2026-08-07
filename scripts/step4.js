@@ -1,20 +1,38 @@
 // View of MVC
 import { formatCurrency } from "./app.js";
-import { getPlanInfo } from "./data.js";
+import { getAddonsInfo, getPlanInfo } from "./data.js";
 
 export const step4 = {
   renderStep4() {
     let step4HTML = '';
-    
+    let addonsHTML = '';
+
     const plan = getPlanInfo();
+    const addons = getAddonsInfo();
 
     const planName = plan.name;
-    const planCostCents = plan.price;
+    const planPriceCents = plan.price;
     const billingTypeFormat1 = plan.typeformat1;
     const billingTypeFormat2 = plan.typeformat2;
     const billingTypeFormat3 = plan.typeformat3;
-    const totalCostCents = 1200;
-    
+
+    let addonPriceCentsTotal = 0;
+
+    addons.forEach((addon) => {
+      const addonName = addon.name;
+      const addonPriceCents = addon.price;
+
+      addonPriceCentsTotal += addon.price;
+
+      addonsHTML += `
+      <div class="addon-details">
+        ${addonName} +$${formatCurrency(addonPriceCents)}/${billingTypeFormat2}
+      </div>
+      `
+    });
+
+    let totalPriceCents = Number(planPriceCents) + addonPriceCentsTotal;
+
     step4HTML += `
   <div class="step4-wrapper">
     <div class="card">
@@ -31,7 +49,7 @@ export const step4 = {
           </div>
           <a href="" class="plan-change-link">Change</a>
           <div class="plan-cost">
-            $${formatCurrency(planCostCents)}/${billingTypeFormat2}
+            $${formatCurrency(planPriceCents)}/${billingTypeFormat2}
           </div>
         </div>
 
@@ -43,7 +61,7 @@ export const step4 = {
           Total (per ${billingTypeFormat3})
         </div>
         <div class="order-total-cost">
-          +$${formatCurrency(totalCostCents)}/${billingTypeFormat2}
+          +$${formatCurrency(totalPriceCents)}/${billingTypeFormat2}
         </div>
       </div>
     </div>
@@ -52,5 +70,9 @@ export const step4 = {
 
     document.querySelector('.main')
       .innerHTML = step4HTML;
+
+    document.querySelector('.addons-info')
+      .innerHTML = addonsHTML;
   }
+
 }

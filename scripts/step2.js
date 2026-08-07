@@ -40,7 +40,7 @@ export const step2 = {
         </div>
       </div>
     `;
-    
+
     const plans = this.isYearly ? this.yearly : this.monthly
 
     plans.forEach((plan, index) => {
@@ -77,6 +77,12 @@ export const step2 = {
           this.renderStep2(this.monthly);
         }
       });
+
+    document.querySelectorAll('input[name="option"]').forEach((input) => {
+      input.addEventListener('click', () => {
+        this.saveSelectedPlan();
+      });
+    });
   },
 
   saveSelectedPlan() {
