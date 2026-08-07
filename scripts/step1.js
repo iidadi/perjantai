@@ -1,5 +1,6 @@
 // View of MVC
 
+import { renderAside } from "./app.js";
 import { state, setPersonalInfo } from './data.js';
 
 export const step1 = {
@@ -7,31 +8,36 @@ export const step1 = {
     return `
     <div class="step1-wrapper">
       <div class="card">
-        <h1>Personal info</h1>
-        <p class="subtitle">Please provide your name, email address, and phone number.</p>
-        <form id="step1-form" novalidate>
-          <div class="form-group">
-            <div class="label-row">
-              <label for="name">Name</label>
-              <span class="error-msg"></span>
-            </div>
-            <input type="text" id="name" placeholder="e.g. Stephen King" value="${state.name}">
+          <div class="aside">
+            ${renderAside(1)}
           </div>
-          <div class="form-group">
-            <div class="label-row">
-              <label for="email">Email Address</label>
-              <span class="error-msg"></span>
-            </div>
-            <input type="email" id="email" placeholder="e.g. stephenking@lorem.com" value="${state.email}">
+          <div class="bside">
+            <h1>Personal info</h1>
+            <p class="subtitle">Please provide your name, email address, and phone number.</p>
+            <form id="step1-form" novalidate>
+              <div class="form-group">
+                <div class="label-row">
+                  <label for="name">Name</label>
+                  <span class="error-msg"></span>
+                </div>
+                <input type="text" id="name" placeholder="e.g. Stephen King" value="${state.name}">
+              </div>
+              <div class="form-group">
+                <div class="label-row">
+                  <label for="email">Email Address</label>
+                  <span class="error-msg"></span>
+                </div>
+                <input type="email" id="email" placeholder="e.g. stephenking@lorem.com" value="${state.email}">
+              </div>
+              <div class="form-group">
+                <div class="label-row">
+                  <label for="phone">Phone Number</label>
+                  <span class="error-msg"></span>
+                </div>
+                <input type="tel" id="phone" placeholder="e.g. +1 234 567 890" value="${state.phone}">
+              </div>
+            </form>
           </div>
-          <div class="form-group">
-            <div class="label-row">
-              <label for="phone">Phone Number</label>
-              <span class="error-msg"></span>
-            </div>
-            <input type="tel" id="phone" placeholder="e.g. +1 234 567 890" value="${state.phone}">
-          </div>
-        </form>
       </div>
     </div>
   `;

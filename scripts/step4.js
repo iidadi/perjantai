@@ -1,4 +1,5 @@
 // View of MVC
+import { renderAside } from "./app.js";
 import { formatCurrency } from "./app.js";
 import { getAddonsInfo, getPlanInfo } from "./data.js";
 
@@ -36,34 +37,39 @@ export const step4 = {
     step4HTML += `
   <div class="step4-wrapper">
     <div class="card">
-      <h1>Finishing up</h1>
+        <div class="aside">
+          ${renderAside(4)}
+        </div>
+        <div class="bside">
+          <h1>Finishing up</h1>
 
-      <div class="subtitle">
-        Double-check everything looks OK before confirming.
-      </div>
-
-      <div class="infobox">
-        <div class="plan-info">
-          <div class="plan-type">
-            ${planName} (${billingTypeFormat1})
+          <div class="subtitle">
+            Double-check everything looks OK before confirming.
           </div>
-          <a href="" class="plan-change-link">Change</a>
-          <div class="plan-cost">
-            $${formatCurrency(planPriceCents)}/${billingTypeFormat2}
+
+          <div class="infobox">
+            <div class="plan-info">
+              <div class="plan-type">
+                ${planName} (${billingTypeFormat1})
+              </div>
+              <a href="" class="plan-change-link">Change</a>
+              <div class="plan-cost">
+                $${formatCurrency(planPriceCents)}/${billingTypeFormat2}
+              </div>
+            </div>
+
+            <div class="addons-info"></div>
+          </div>
+
+          <div class="order-total-wrapper">
+            <div class="order-total">
+              Total (per ${billingTypeFormat3})
+            </div>
+            <div class="order-total-cost">
+              +$${formatCurrency(totalPriceCents)}/${billingTypeFormat2}
+            </div>
           </div>
         </div>
-
-        <div class="addons-info"></div>
-      </div>
-
-      <div class="order-total-wrapper">
-        <div class="order-total">
-          Total (per ${billingTypeFormat3})
-        </div>
-        <div class="order-total-cost">
-          +$${formatCurrency(totalPriceCents)}/${billingTypeFormat2}
-        </div>
-      </div>
     </div>
   </div>
   `;

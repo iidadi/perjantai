@@ -1,4 +1,5 @@
 // View of MVC
+import { renderAside } from "./app.js";
 
 export const step5 = {
   renderStep5() {
@@ -7,14 +8,19 @@ export const step5 = {
     step5HTML += `
   <div class="step5-wrapper">
     <div class="card">
-      <img src="assets/images/icon-thank-you.svg">
+        <div class="aside">
+          ${renderAside(4)}
+        </div>
+        <div class="bside">
+        <img src="assets/images/icon-thank-you.svg">
 
-      <h1>Thank you!</h1>
+        <h1>Thank you!</h1>
 
-      <div class="subtitle">
-        Thanks for confirming your subscription! We hope you have fun
-        using our platform. If you ever need support, please feel free
-        to email us at support@loremgaming.com.
+        <div class="subtitle">
+          Thanks for confirming your subscription! We hope you have fun
+          using our platform. If you ever need support, please feel free
+          to email us at support@loremgaming.com.
+        </div>
       </div>
     </div>
   </div>
