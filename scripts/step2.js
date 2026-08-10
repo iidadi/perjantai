@@ -16,6 +16,7 @@ export const step2 = {
     { name: "Pro", priceCents: 15000, bonus: "2 months free", pic: "./assets/images/icon-pro.svg" }
   ],
 
+  selectedPlanIndex: 0,
   isYearly: false,
 
   renderStep2() {
@@ -44,9 +45,11 @@ export const step2 = {
     const plans = this.isYearly ? this.yearly : this.monthly
 
     plans.forEach((plan, index) => {
+      const isChecked = index === this.selectedPlanIndex ? 'checked' : '';
+      
       HTML += /* html */ `
             <div class="plan"><label>
-              <input type="radio" name="option" value="${plan.name} ${plan.priceCents} ${this.isYearly ? 'Yearly yr year' : 'Monthly mo month'}" ${index === 0 ? 'checked' : ''}>
+              <input type="radio" name="option" value="${plan.name} ${plan.priceCents} ${this.isYearly ? 'Yearly yr year' : 'Monthly mo month'}" data-index=${index} ${isChecked}>
               <div class="plan-pic"><img class="plan-img" src="${plan.pic}"></div>
               <div class="plan-text">
                 <div class="plan-text-name">${plan.name}</div>
@@ -67,22 +70,23 @@ export const step2 = {
   attachEvents() {
     document.querySelector('.js-billing-toggle')
       .addEventListener('change', (event) => {
-
         this.isYearly = event.target.checked;
-
-        if (this.isYearly) {
-          this.renderStep2(this.yearly);
-        }
-        else {
-          this.renderStep2(this.monthly);
-        }
+        this.renderStep2();
       });
 
     document.querySelectorAll('input[name="option"]').forEach((input) => {
       input.addEventListener('click', () => {
         this.saveSelectedPlan();
+        this.selectedPlanIndex = this.getSelectedPlanIndex();
       });
     });
+  },
+
+  getSelectedPlanIndex() {
+    const active = document.querySelector('input[name="option"]:checked');
+    const index = Number(active.dataset.index);
+
+    return index;
   },
 
   saveSelectedPlan() {
