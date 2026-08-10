@@ -72,6 +72,11 @@ export const step1 = {
     if (input.value.trim() === '') {
       this.showError(input, 'This field is required');
       return false;
+    } 
+    if (!/^\+[^\s]+[0-9\s]+$/.test(input.value.trim())) 
+    {
+      this.showError(input, 'Invalid phone number');
+      return false;
     }
     this.clearError(input);
     return true;
